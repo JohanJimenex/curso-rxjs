@@ -1,0 +1,22 @@
+{
+  "name": "rxjs-dev",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "rxjs": "",
+    "typescript": "",
+    "webpack": "",
+    "webpack-dev-server": ""
+  },
+  "devDependencies": {
+    "ts-loader": "",
+    "css-loader": "",
+    "webpack-cli": ""
+  },
+  "scripts": {
+    "start": "webpack serve --mode development --open --port=8081"
+  },
+  "author": "",
+  "license": "ISC"
+}
