@@ -33,6 +33,13 @@ const miGenerador = function* () {
 
 const iterador = miGenerador()// se debe guardar la referencia
 
+//se puede usar un bucle for tambien
+console.log(iterador.next()); //emite 1
+console.log(iterador.next()); // 2
+console.log(iterador.next()); // 3
+console.log(iterador.next()); // undefine, done: true
+
+//Lo mismo pero con el observable 'FROM'
 from(iterador).subscribe(resp => {
     console.log(resp);
 })
