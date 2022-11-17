@@ -2,7 +2,7 @@ import { Observable, Observer } from 'rxjs';
 
 
 // const obs$ = Observable.create(); //ya no se usa
-
+//PODEMOS CREAR NUESTRO PROPIO OBSERVABLE PERSONALZADO
 const miObservable$ = new Observable<string>((miSubscriber) => {
 
     miSubscriber.next('klk')
