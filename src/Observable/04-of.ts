@@ -1,5 +1,11 @@
 import { of } from "rxjs";
 
+/**
+ * of(): toma argumentos, y emite la secuencia, 
+ * dependiendo cuantos arguentos mandemos, aguanta hasta 50 creo. 
+ */
+
+
 //Tambien podemos  ejecutarlo directo ej: of().subscribe(resp => console.log )
 const miObservable$ = of(1, 2, 3, 4, 5, 6)
 

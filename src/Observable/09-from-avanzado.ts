@@ -6,22 +6,22 @@ import { of, from } from "rxjs";
  */
 
 
-//* from(): crea un observable en base a una arreglo, objeto,
+//* from(): itera y devuelve un valor ya sea un arreglo, objeto,
 //* promesa, y lo itera como un .forEache()
 // const miObservable$ = from([1, 2, 3, 4, 5]);// imprime en orden 1, luego 2, 3, 4, y 5
 // const miObservable$ = of(...[1, 2, 3, 4, 5]);// lo mismo pero con of y el spread operator
-// const miObservable$ = from('Johan');// itera y emite cada letra
-const miObservable$ = from(fetch('https://reqres.in/api/users/1'));// itera y emite cada letra
+// const miObservable$ = from('Johan');// itera y emite cada letra j o . h . a
+const miObservable$ = from(fetch('https://reqres.in/api/users/1'));// promesa
 
-// miObservable$.subscribe({
-//     next: async (resp) => {
-//         console.log(await resp.json());
-//         //Forma vieja con then() ya qu ees una promesa
-//         // resp.json().then(res => {
-//         //     console.log(res);
-//         // })
-//     },
-// })
+miObservable$.subscribe({
+    next: async (resp) => {
+        console.log(await resp.json());
+        //Forma vieja con then() ya qu ees una promesa
+        // resp.json().then(res => {
+        //     console.log(res);
+        // })
+    },
+})
 
 //Funcion generadora: con el asteriscto se indica.
 //Emite un valor por cada llamada con .next()

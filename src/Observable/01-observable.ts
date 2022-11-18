@@ -10,10 +10,10 @@ const miObservable$ = new Observable<string>((miSubscriber) => {
 
     const a = null;
 
-    //si hay un error no contrado, detiene todo hasta esta linea.
+    //si hay un error no controlado, detiene todo hasta esta linea.
     // a.edad = 2; //esto dispara el error y termina la emision, no dispara el .error() ni el .complete() ni el unsubscribe()
 
-    let x = setInterval(() => { //esto hay que terminarlo auneu se haga la desubsscription
+    let x = setInterval(() => { //esto hay que terminarlo en se haga la desubsscription
         console.log('wee');
     }, 1000)
 
@@ -27,7 +27,7 @@ const miObservable$ = new Observable<string>((miSubscriber) => {
     return () => { //esto solo se llama si se desusscribe pero si es que no hay un error no controlado
         console.log('se cerró la subscription');
         clearInterval(x) //cerramos el interval
-    }
+    } 
 
 });
 

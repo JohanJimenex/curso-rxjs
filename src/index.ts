@@ -1,38 +1,37 @@
-import { range, fromEvent } from "rxjs";
-import { map, pluck , mapTo} from "rxjs/operators";
+import { range, from } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 
 range(1, 5).pipe(
-    // es como el .map(), va tomando cada valor
-    // map(v => v * 10) //retorna el valor por 10
-    // map<number,number>(v => v * 10) // con tipado
-    // map<number, string>(v => 'hello') // con tipado, entrada y de salida un string
-    // map(valor => { //con cuerpo 
-    //     return valor * 10
-    // })
+    filter((valor, index) => {
+        console.log(index);
+
+        return valor > 2 // solo deja pasar el valor, si se cumple la condicion true
+    })
 ).subscribe(resp => {
     console.log(resp);
+
 })
 
 
-const keyUpEvent$ = fromEvent<KeyboardEvent>(document, 'keyup');
+let personajes = [
+    {
+        tipo: 'heroe',
+        nombre: 'Batman'
+    },
+    {
+        tipo: 'heroe',
+        nombre: 'Robin'
+    },
+    {
+        tipo: 'villano',
+        nombre: 'Joker'
+    }
+]
 
-keyUpEvent$.pipe(
-    map(event => event.code)
-).subscribe(resp => {
-    console.log(resp);
-})
+from(personajes).pipe(
+    filter(v => v.tipo == 'heroe')
+).subscribe(res => {
+    console.log(res);
 
-keyUpEvent$.pipe(
-    //con pluck obtenemos una propiedad por su clave, 
-    //si un objeto está dentro de otro objeto lo agregamos con coma
-    pluck('key', 'otraClaveDentro')
-).subscribe(resp => {
-    console.log(resp);
-})
-
-keyUpEvent$.pipe(
-    mapTo('retorna este string u otra cosa')
-).subscribe(resp => {
-    console.log(resp);
 })
