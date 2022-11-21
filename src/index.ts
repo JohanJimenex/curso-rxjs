@@ -1,34 +1,27 @@
-import { interval, fromEvent } from 'rxjs';
-import {
-    first,
-    takeWhile,
-    takeUntil,
-    skip,
-    distinct,
-    distinctUntilChanged,
-    distinctUntilKeyChanged,
-
-} from 'rxjs/operators';
+import { concat, interval, merge, of, combineLatest, forkJoin } from 'rxjs';
+import { take, } from 'rxjs/operators'
 
 
+// concat(// concat permite ejecutar en orden los observavle,  
+//     interval(1000).pipe(take(3)),
+//     interval(1000).pipe(take(1))
+// ).subscribe(console.log)
 
 
-const intervalo$ = interval(500);
+// merge(// merge a diferenfia de concat que e suno por uno , este deja que se ejecuten todos al mismo tiempo
+//     of('yo','con klk', 'klk', 'laaaa') ,
+//     of(1000, 'klkd', 'klk') 
+// ).subscribe(console.log)
 
-const clickEvent$ = fromEvent(document, 'click')
+// combineLatest(// combina la ultima emision del primer observable con cada uno de las emisiones del segundo observable
+//     of('yo', 'con klk', 'klk', 'laaaa'), // imprime un arreglo ['laaaa', 1000], luego laaa con klkd y por utlimo laaa con klk 
+//     of(1000, 'klkd', 'klk')
+// ).subscribe(console.log)
 
-intervalo$.pipe(
-    // first(),//toma la primera emisión del observable y cierra el mismo igual que take(1)
-    // first(v => v > 5),//Emite el primero en cumplir la condicion emite el valor y cierra // emite un  3
-    // takeWhile(x => x < 10, true),//mientras el valor emitido sea menor a 10 lo deja pasar, el 'true' emite el valor que n
-    // takeUntil(clickEvent$),// este operator dejará pasar todo lo del observable emita hasta que esté que tiene dentro emita algo
-    // skip(2), // omite las dos primeras emisiones, luego deja apsar todo lo demás
-    // distinct(), //sólo permite pasar los valores que no se han repetido en la emisión
-    // distinct(v => v.propiedad), //en este caso le pedimos que tome como referencia una propiedad de un objeto
-    // distinctUntilChanged(), // Solo deja pasar el valor si el anterior fue diferente
-    // distinctUntilChanged((vaAnt, vaAct) => vaAct.prop === vaAnt.prop ),// Comparando objetos
-    // distinctUntilKeyChanged('propiedad'),// Comparando objetos es igual anterior. toma la clave de un onbj como referencia
-    
 
+forkJoin( // toma solo los ultimos valores de las emisiones de los observables y lo devuelve en un arreglo u bjeto, ej: sale [4,d,true]
+//oojo solo va a mitir cuando todos los observables terminen sus emisiones.
+    of(1, 2, 3, 4),
+    of('a', 'b', 'c', 'd'),
+    of(false, true)
 ).subscribe(console.log)
-

@@ -17,7 +17,7 @@ const intervalo$ = new Observable<number>((miSubscriber) => {
 })
 
 
-/*
+/*hot observable
 * 1. Casteo multiple, distribuye el mismo valor para multiples subcritores
 * 2. Tambien es un Observer, por lo que tiene lo de .next() .error() y .complete()*/
 const miSubject$ = new Subject();
